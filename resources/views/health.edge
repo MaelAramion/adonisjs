@@ -1,0 +1,13 @@
+@layout('base')
+
+@set('title','Santé de l\'application')
+
+@section('body')
+<section>
+  @if(report.healthy)
+  <h1 class="health-info-ok text-center">L'application est fonctionnelle, base de données connectée et environnement en bonne santé.</h1>
+  @else
+  <h1 class="health-info-bad text-center">L'application est non fonctionnelle, base de données n'est pas connectée ou environnement n'est pas sain</h1>
+  @endif
+</section>
+@end

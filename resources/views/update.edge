@@ -1,0 +1,47 @@
+@layout('base')
+
+@set('title','Modification d\'un animé')
+
+@section('body')
+
+
+<section class="col-12">
+  @if(flashMessages.has('notification'))
+  <div class="success-message bg-success text-center">
+    {{ flashMessages.get('notification') }}
+  </div>
+  @endif
+  <form class="w-100 update-form" action="/anime/do_update/{{ anime.id }}" method="POST">
+    <table class="table">
+      <tr>
+        <th>Champs</th>
+        <th>Valeurs actuelles</th>
+        <th>Modification</th>
+      </tr>
+      <!--  <tr>-->
+      <!--    <th>id</th>-->
+      <!--    <td>{{ anime.id }}</td>-->
+      <!--    <td></td>-->
+      <!--  </tr>-->
+      <tr>
+        <th>Titre</th>
+        <td>{{ anime.titre }}</td>
+        <td><input required type="text" name="titre" value="{{ anime.titre }}"/></td>
+      </tr>
+      <tr>
+        <th>Nombre d'épisodes</th>
+        <td>{{ anime.nb_episode }}</td>
+        <td><input required type="number" name="nb_episode" value="{{ anime.nb_episode }}"/></td>
+      </tr>
+      <tr>
+        <th>Date de sortie</th>
+        <td>{{ anime.date_sortie.toFormat('dd/MM/yyyy') }}</td>
+        <td><input required type="date" name="date_sortie" value="{{ anime.date_sortie.toFormat('yyyy-MM-dd') }}"/></td>
+      </tr>
+    </table>
+    <input type="hidden" value="{{ anime.id }}"/>
+    <input class="mx-auto" type="submit" value="Modifier"/>
+  </form>
+</section>
+
+@end

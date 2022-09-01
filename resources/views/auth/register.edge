@@ -1,0 +1,31 @@
+@layout('base')
+
+@set('title','S\'enregistrer')
+
+@section('body')
+<section>
+  <form method="POST" action="/register">
+    <div class="auth-form col-7 mx-auto">
+      <h1 class="text-center mb-3">S'enregistrer</h1>
+
+      <table class="mx-auto">
+        <tr>
+          <td class="pt-2 pe-3">Nom d'utilisateur :</td>
+          <td class="pt-2"><input type="text" name="name" placeholder="Nom d'utilisateur"/></td>
+        </tr>
+        <tr>
+          <td class="pt-2 pe-3">Email :</td>
+          <td class="pt-2"><input class="align-self-end" type="email" name="email" placeholder="Email"/></td>
+        </tr>
+        <tr>
+          <td class="pt-2 pe-3">Mot de passe : </td>
+          <td class="pt-2"><input class="align-self-end" type="password" name="password" placeholder="Mot de passe"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text-center pt-4"><button class="submit-button" type="submit">S'enregistrer'</button></td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</section>
+@end

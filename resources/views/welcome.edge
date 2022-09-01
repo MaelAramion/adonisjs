@@ -1,0 +1,84 @@
+@layout('base')
+
+@set('title','Liste des animés')
+
+@section('body')
+
+
+@if(animes.length == 0)
+<section>
+  <h1 class="text-center my-5">Aucun animé pour le moment{{ auth.isLoggedIn ? '' : ', veuillez vous connecter pour en ajouter' }}</h1>
+
+</section>
+@else
+<section>
+  <h1 class="text-center">Liste des animés</h1>
+  @if(flashMessages.has('suppression'))
+  <div class="success-message bg-success text-center">
+    {{ flashMessages.get('suppression') }}
+  </div>
+  @endif
+  <table class="table">
+    <tr>
+      <th>Titre</th>
+      <th>Nombre d'épisodes</th>
+      <th>Date de sortie</th>
+      @if(auth.isLoggedIn)
+      <th>Supprimer</th>
+      <th>Modifier</th>
+      @endif
+    </tr>
+    @each(anime in animes)
+    <tr>
+      <td>{{ anime.titre }}</td>
+      <td>{{ anime.nb_episode }}</td>
+      <td>{{ anime.date_sortie.toFormat('d/M/yyyy') }}</td>
+      @if(auth.isLoggedIn)
+      <td><a href="/anime/delete/{{ anime.id }}">Supprimer</a></td>
+      <td><a href="/anime/update/{{ anime.id }}">Modifier</a></td>
+      @endif
+    </tr>
+    @endeach
+  </table>
+</section>
+@endif
+
+
+@if(auth.isLoggedIn)
+<section>
+  <h1 class="text-center mb-5">Ajouter un animé</h1>
+  <form action="{{ route('anime.create') }}" method="POST"/>
+
+  <table class="mx-auto add-form">
+    <tr>
+      <td colspan="2">
+        @if(flashMessages.has('notification'))
+        <div class="success-message bg-success text-center">
+          {{ flashMessages.get('notification') }}
+        </div>
+        @endif
+      </td>
+    </tr>
+    <tr>
+      <td>Titre</td>
+      <td><input required type="text" name="titre"/></td>
+    </tr>
+    <tr>
+      <td>Date de sortie</td>
+      <td><input required type="date" name="date_sortie"/></td>
+    </tr>
+    <tr>
+      <td>Nombre d'épisodes</td>
+      <td><input required type="number" name="nb_episode"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="text-center py-4"><input type="submit" value="Ajouter"/></td>
+    </tr>
+  </table>
+  </form>
+</section>
+@endif
+
+@end
+
+
