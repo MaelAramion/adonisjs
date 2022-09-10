@@ -4,6 +4,9 @@
 <h3 align="left">Installer la base de données</h3>
 
 
+
+<h4>Base de données hébergée</h4>
+<p>Une base de donnée hébergée a été configuré dans l'application. Vous pouvez lancer l'application directement mais vous pouvez héberger la base de données localement, dans ce cas changer les valeurs du .env et suivez les instructions suivantes.</p>
 <h4>Utiliser la base de données fournies</h4>
 <p align="left">
 SGBD utilisé : MySQL <br/>
